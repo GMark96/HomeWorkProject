@@ -71,11 +71,33 @@ public class HomeWorkProject {
                     "\n Expire: " + soa.getExpire() +
                     "\n TTL:" + soa.getTTL());
         }
+        
+        System.out.println("5. task");
         records = new Lookup(fqdn,Type.A).run();
         for (int i = 0; i < records.length; i++) {
             ARecord a = (ARecord) records[i];
-            System.out.println("NS: " + a.getAddress());
+            dns.setA(a);
+            System.out.println("A: " + a.getAddress());
         }
+        records = new Lookup(fqdn,Type.AAAA).run();
+        for (int i = 0; i < records.length; i++) {
+            AAAARecord aaaa = (AAAARecord) records[i];
+            dns.setA_4(aaaa);
+            System.out.println("AAAA: " + aaaa.getAddress());
+        }
+        records = new Lookup("www."+fqdn,Type.A).run();
+        for (int i = 0; i < records.length; i++) {
+            ARecord a = (ARecord) records[i];
+            dns.setWA(a);
+            System.out.println("(www) A: " + a.getAddress());
+        }
+        records = new Lookup("www."+fqdn,Type.AAAA).run();
+        for (int i = 0; i < records.length; i++) {
+            AAAARecord aaaa = (AAAARecord) records[i];
+            dns.setWA_4(aaaa);
+            System.out.println("(www) AAAA: " + aaaa.getAddress());
+        }
+        
     }
    
 }
