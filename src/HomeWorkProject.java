@@ -7,6 +7,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.util.Iterator;
 import java.util.List;
 import org.xbill.DNS.*;
@@ -25,39 +26,74 @@ public class HomeWorkProject {
         dns = new DNS();
     }
     
-    private void start() throws IOException{
+    private void start() 
+            throws IOException, ZoneTransferException, InterruptedException{
         
         /*INPUT*/
-        System.out.println("Enter the FQDN: ");
+        System.out.print("Enter the FQDN: ");
         BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
-            fqdn = in.readLine();
+        fqdn = in.readLine();
+        
+        System.out.println("\n1. task");
+        rootTest();
         
         /*Print details and save it*/
+        System.out.println("\n2. task: ");
         QueryDetails();
         
         /*checking SOA and NS*/
-        System.out.println("3. task: " );
+        System.out.println("\n3. task: " );
         if (dns.CheckSOA()){
             System.out.println("SOA consistent with NS");
         }else{
             System.out.println("SOA NOT consistent with NS");
         }
         
-        System.out.println("4. task: ");
+        System.out.println("\n4. task: ");
         dns.CheckTCPandUDP();
         
         /*5.task in DNS class*/
         
-        System.out.println("6. task: ");
+        System.out.println("\n6. task: ");
         dns.addPTR();
     }
 
-    public static void main(String[] args) throws IOException {
+    private void rootTest() throws IOException, InterruptedException{    
+        String command = "nslookup -type=NS . " + fqdn;
+
+        Process proc = Runtime.getRuntime().exec(command);
+
+        // Read the output
+        BufferedReader reader =  
+              new BufferedReader(new InputStreamReader(proc.getInputStream()));
+
+        String line = "";
+        String regex= "\\w\\.root-servers.net";
+        boolean isHas=false;
+        while(((line = reader.readLine()) != null) && (!isHas)) {
+            String [] tmp = line.split(" ");
+            for (int i=0;i<tmp.length;i++){
+                if(tmp[i].matches(regex)){
+                    System.out.println("It has got, for example: " +tmp[i]);
+                    isHas=true;
+                }
+            }
+        }
+        if (!isHas){
+            System.out.println("It hasn't got!");
+        }
+
+        proc.waitFor();
+    }
+    
+    public static void main(String[] args) 
+            throws IOException, ZoneTransferException, InterruptedException {
         new HomeWorkProject().start();
     }
     
-    public void QueryDetails() throws TextParseException{
+    public void QueryDetails() throws TextParseException, UnknownHostException{
         /*MX records*/
+
         Record [] records = new Lookup(fqdn, Type.MX).run();
         for (int i = 0; i < records.length; i++) {
             MXRecord mx = (MXRecord) records[i];
@@ -89,7 +125,7 @@ public class HomeWorkProject {
         }
         
         /*5. task (A-AAAA records)*/
-        System.out.println("5. task");
+        System.out.println("\n5. task");
         records = new Lookup(fqdn,Type.A).run();
         for (int i = 0; i < records.length; i++) {
             ARecord a = (ARecord) records[i];
