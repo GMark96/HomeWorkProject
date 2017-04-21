@@ -1,0 +1,34 @@
+
+SOA: 
+ mail: dns-admin.google.com.
+ Serial: Nr.:153822279
+ Refresh: 900
+ Retry: 900
+ Expire: 1800
+ TTL:60
+NS:
+ns2.google.com.
+ns1.google.com.
+ns4.google.com.
+ns3.google.com.
+MX:
+20	alt1.aspmx.l.google.com.
+30	alt2.aspmx.l.google.com.
+40	alt3.aspmx.l.google.com.
+10	aspmx.l.google.com.
+50	alt4.aspmx.l.google.com.
+A:
+google.com./172.217.23.238
+A(www):
+www.google.com./216.58.214.228
+AAAA:
+google.com./2a00:1450:4014:80d:0:0:0:200e
+AAAA(www):
+www.google.com./2a00:1450:400d:803:0:0:0:2004
+PTR:
+prg03s06-in-f14.1e100.net.
+prg03s06-in-f238.1e100.net.
+bud02s24-in-f228.1e100.net.
+bud02s24-in-f4.1e100.net.
+prg03s06-in-x0e.1e100.net.
+bud02s24-in-x04.1e100.net.

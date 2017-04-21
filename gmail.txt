@@ -1,0 +1,34 @@
+
+SOA: 
+ mail: dns-admin.google.com.
+ Serial: Nr.:153822279
+ Refresh: 900
+ Retry: 900
+ Expire: 1800
+ TTL:60
+NS:
+ns2.google.com.
+ns4.google.com.
+ns3.google.com.
+ns1.google.com.
+MX:
+20	alt2.gmail-smtp-in.l.google.com.
+30	alt3.gmail-smtp-in.l.google.com.
+10	alt1.gmail-smtp-in.l.google.com.
+5	gmail-smtp-in.l.google.com.
+40	alt4.gmail-smtp-in.l.google.com.
+A:
+gmail.com./172.217.23.229
+A(www):
+googlemail.l.google.com./172.217.23.229
+AAAA:
+gmail.com./2a00:1450:4014:80d:0:0:0:2005
+AAAA(www):
+googlemail.l.google.com./2a00:1450:4014:80d:0:0:0:2005
+PTR:
+prg03s06-in-f5.1e100.net.
+prg03s06-in-f229.1e100.net.
+prg03s06-in-f5.1e100.net.
+prg03s06-in-f229.1e100.net.
+prg03s06-in-x05.1e100.net.
+prg03s06-in-x05.1e100.net.

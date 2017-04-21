@@ -3,6 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+import java.io.BufferedWriter;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.io.UnsupportedEncodingException;
+import java.io.Writer;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +31,7 @@ public class DNS {
     private AAAARecord       a_4;
     private AAAARecord      wa_4; //www.FQDN
     private List<PTRRecord> ptr;
-    
+        
     public void setA(ARecord value)
     {
         a=value;
@@ -139,6 +146,37 @@ public class DNS {
             ptr.add(tmp);
             System.out.println(tmp.getTarget());
         }
+    }
+    
+        
+    public void writeFile(String name) 
+            throws UnsupportedEncodingException, FileNotFoundException, IOException{
+        String[] tmp = name.split("\\.");
+        Writer writer = new BufferedWriter(new OutputStreamWriter(      
+              new FileOutputStream(tmp[0]+".txt"), "utf-8")); 
+        writer.write("\nSOA: " + "\n mail: " + soa.getAdmin() +
+                    "\n Serial: Nr.:" + soa.getSerial() +
+                    "\n Refresh: " + soa.getRefresh() +
+                    "\n Retry: " + soa.getRetry() +
+                    "\n Expire: " + soa.getExpire() +
+                    "\n TTL:" + soa.getTTL());
+        writer.write("\nNS:");
+        for (int i=0;i<ns.size();i++){
+            writer.write("\n" + ns.get(i).getTarget().toString());
+        }
+        writer.write("\nMX:");
+        for (int i=0;i<mx.size();i++){
+            writer.write("\n" + mx.get(i).getPriority() + "\t" + mx.get(i).getTarget());
+        }
+        writer.write("\nA:\n" + a.getAddress());
+        writer.write("\nA(www):\n" + wa.getAddress());
+        writer.write("\nAAAA:\n" + a_4.getAddress());
+        writer.write("\nAAAA(www):\n" + wa_4.getAddress());
+        writer.write("\nPTR:");
+        for (int i=0;i<ptr.size();i++){
+            writer.write("\n" + ptr.get(i).getTarget());
+        }
+        writer.close();
     }
 }
     

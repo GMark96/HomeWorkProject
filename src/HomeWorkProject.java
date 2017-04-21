@@ -56,6 +56,9 @@ public class HomeWorkProject {
         
         System.out.println("\n6. task: ");
         dns.addPTR();
+        
+        /*write details into a file*/
+        dns.writeFile(fqdn);
     }
 
     private void rootTest() throws IOException, InterruptedException{    
