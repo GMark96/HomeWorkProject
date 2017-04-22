@@ -7,16 +7,16 @@ SOA:
  Expire: 1800
  TTL:60
 NS:
-ns4.google.com.
-ns1.google.com.
 ns2.google.com.
+ns1.google.com.
 ns3.google.com.
+ns4.google.com.
 MX:
 20	alt1.aspmx.l.google.com.
 40	alt3.aspmx.l.google.com.
+30	alt2.aspmx.l.google.com.
 50	alt4.aspmx.l.google.com.
 10	aspmx.l.google.com.
-30	alt2.aspmx.l.google.com.
 A:
 google.com./172.217.23.238
 A(www):
