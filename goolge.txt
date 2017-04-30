@@ -1,0 +1,30 @@
+
+SOA: 
+ mail: dns-admin.google.com.
+ Serial: Nr.:154662886
+ Refresh: 900
+ Retry: 900
+ Expire: 1800
+ TTL:60
+NS:
+ns2.google.com.
+ns1.google.com.
+ns3.google.com.
+ns4.google.com.
+MX:
+0	.
+A:
+goolge.com./216.58.209.196
+A(www):
+www.goolge.com./216.58.209.195
+AAAA:
+goolge.com./2a00:1450:400d:807:0:0:0:2004
+AAAA(www):
+www.goolge.com./2a00:1450:400d:807:0:0:0:2003
+PTR:
+bud02s22-in-f4.1e100.net.
+bud02s22-in-f196.1e100.net.
+bud02s22-in-f3.1e100.net.
+bud02s22-in-f195.1e100.net.
+bud02s22-in-x04.1e100.net.
+bud02s22-in-x03.1e100.net.
